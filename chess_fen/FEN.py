@@ -17,6 +17,15 @@ KNIGHT_VAL = BISHOP_VAL = 3  # конь и слон
 ROOK_VAL = 5  # ладья
 QUEEN_VAL = 9  # ферзь
 
+CHESS = {'p': PAWN_VAL, 'n': KNIGHT_VAL, 'b': BISHOP_VAL, 'r': ROOK_VAL, 'q': QUEEN_VAL}
+
 
 def calc_chess_balance(fen: str) -> int:
-    pass
+    result = 0
+    for character in fen.split(' ')[0]:
+        if character.lower() in 'rnbqp':
+            if character.isupper():
+                result += CHESS[character.lower()]
+            else:
+                result -= CHESS[character.lower()]
+    return result
