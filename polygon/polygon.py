@@ -39,5 +39,5 @@ def polygon_vertices(n: int, r: float = R) -> list:
         y1 = x * sin(angle) + y * cos(angle)
         vertices.append((x1, y1))
         x, y = x1, y1
-        
+
     return vertices
