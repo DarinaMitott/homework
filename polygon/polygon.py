@@ -27,4 +27,17 @@ R = 3.0
 
 
 def polygon_vertices(n: int, r: float = R) -> list:
-    pass
+    if n < 3:
+        raise ValueError('not enough angles')
+    angle = -(360 * pi / 180) / n
+    x = 0
+    y = r
+    vertices = [(x, y)]
+
+    for point in range(1, n):
+        x1 = x * cos(angle) - y * sin(angle)
+        y1 = x * sin(angle) + y * cos(angle)
+        vertices.append((x1, y1))
+        x, y = x1, y1
+        
+    return vertices
