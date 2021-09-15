@@ -17,18 +17,29 @@
 
 from collections import namedtuple
 
-Rect = namedtuple("Rect", "x y w h".split())
+Rect = namedtuple("Rect", "x y w h")
 
 
 def rect_inside(a: Rect, b: Rect) -> bool:
     """
     Checks if whole rectangle `b` is within rectangle `a`.
     """
-    pass
+    return all([
+        b.x >= a.x,
+        b.y >= a.y,
+        b.x + b.w <= a.x + a.w,
+        b.y + b.h <= a.y + a.h,
+    ])
 
 
 def rects_intersect(a: Rect, b: Rect) -> bool:
     """
     Checks if 2 rectangles `a` and `b` have at least a single intersection point.
     """
-    pass
+    return not any([
+        a.x > b.x + b.w,
+        a.x + a.w < b.x,
+        a.y + a.h < b.y,
+        a.y > b.y + b.h
+    ])
+
