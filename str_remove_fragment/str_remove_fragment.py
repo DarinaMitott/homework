@@ -9,9 +9,11 @@
 
 def remove_fragment(s: str, sep: str) -> str:
     start = s.find(sep)
-    end = s.rfind(sep)
+    if start < 0:
+        return s
 
-    if start < 0 or start == end:
+    end = s.rfind(sep)
+    if start == end:
         return s
 
     return s[:start] + s[end + len(sep):]
